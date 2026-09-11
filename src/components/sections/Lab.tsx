@@ -80,8 +80,9 @@ export function Lab() {
               <div className="mt-4 flex h-40 items-end gap-6">
                 {bars.map((b, i) => (
                   <div key={b.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
+                    <span className="text-xs text-ink-soft">{Math.round(b.value * 100)}%</span>
                     <motion.div
-                      className="w-full origin-bottom rounded-t bg-wine"
+                      className="w-14 origin-bottom rounded-t bg-wine"
                       style={{ height: `${b.value * 100}%` }}
                       initial={{ scaleY: 0 }}
                       whileInView={{ scaleY: 1 }}
