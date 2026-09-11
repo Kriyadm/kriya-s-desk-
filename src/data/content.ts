@@ -1,5 +1,6 @@
 export const navItems = [
   { label: "The Story", id: "about" },
+  { label: "Experience", id: "experience" },
   { label: "The Work", id: "work" },
   { label: "The Lab", id: "lab" },
   { label: "Things I Love", id: "loves" },
@@ -25,41 +26,56 @@ export const activities = [
 
 export const traits = [
   {
-    title: "Techie",
-    body: "I like building things and understanding how systems work — from a role-based asset tracker used across ~900 devices to a drone detection pipeline chewing through 27GB of video.",
+    title: "Software engineer",
+    body: "I build systems end-to-end — a role-based IT asset platform covering 894 highway assets with ~100 REST endpoints, and API integrations across ~300 endpoints in a 15-person team.",
   },
   {
-    title: "Bookworm",
-    body: "I disappear into fictional worlds on a fairly regular basis. Ask me what I'm currently living inside of.",
+    title: "AI / ML practitioner",
+    body: "Real-time detection and tracking (YOLO + DeepSORT over a 27GB video dataset), classical ML pipelines, and NLP summarization — evaluated properly, not just trained.",
   },
   {
-    title: "Rom-com enthusiast",
-    body: "I will defend unrealistic movie relationships with zero shame and a fully prepared argument.",
+    title: "Full-stack developer",
+    body: "Angular, Spring Boot, FastAPI, REST APIs and relational data modelling — with role-based auth and clean separation between layers.",
   },
   {
-    title: "Foodie",
-    body: "Good food is a legitimate personality trait. I have opinions about every under-₹200 spot in Ahmedabad.",
+    title: "Design & systems thinker",
+    body: "I care how an interface reads, not only whether it works: hierarchy, typography, motion and state — this site is the working example.",
   },
   {
-    title: "Bollywood girl",
-    body: "Music, movies, drama, nostalgia — in that order, usually all at once.",
+    title: "Content & storytelling",
+    body: "Led graphics and social content for college bodies and campaigns — turning a technical or creative idea into something an audience actually stops for.",
   },
   {
-    title: "Design nerd",
-    body: "I care, maybe too much, about how things look, feel, and move — this site is proof.",
+    title: "Off the clock",
+    body: "Books, rom-coms, Bollywood soundtracks and a well-researched map of Ahmedabad's food — the inputs behind most of the taste I bring to work.",
   },
 ];
 
-export const toolkit = [
-  "Canva",
-  "CapCut",
-  "Instagram Insights",
-  "Google Sheets",
-  "Reels & Stories",
-  "Caption Writing",
-  "Graphic Design",
-  "Campaign Support",
+export type ToolkitGroup = { label: string; items: string[] };
+
+export const toolkitGroups: ToolkitGroup[] = [
+  {
+    label: "Languages",
+    items: ["Python", "Java", "TypeScript", "JavaScript", "SQL"],
+  },
+  {
+    label: "Frameworks",
+    items: ["Angular", "Spring Boot", "FastAPI", "React", "REST APIs"],
+  },
+  {
+    label: "AI / ML",
+    items: ["YOLO", "DeepSORT", "scikit-learn", "NLP", "TF-IDF & embeddings"],
+  },
+  {
+    label: "Data & tools",
+    items: ["PostgreSQL / MySQL", "Git", "Postman", "Google Sheets"],
+  },
+  {
+    label: "Design & content",
+    items: ["Figma", "Canva", "CapCut", "Graphic design", "Caption writing"],
+  },
 ];
+
 
 export type Project = {
   title: string;
