@@ -1,24 +1,50 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { CurtainIntro, GrainOverlay } from "@/components/CurtainIntro";
+import { Nav } from "@/components/Nav";
+import { RoamingKriya } from "@/components/MiniKriya";
+import { Hero } from "@/components/sections/Hero";
+import { Lab } from "@/components/sections/Lab";
+import { Loves } from "@/components/sections/Loves";
+import { MemoryWall } from "@/components/sections/MemoryWall";
+import { PingMe } from "@/components/sections/PingMe";
+import { Story } from "@/components/sections/Story";
+import { Work } from "@/components/sections/Work";
+
+const title = "Kriya Morabia — AI/ML, Software Engineering, Design & Storytelling";
+const description =
+  "The Notebook Desk: portfolio of Kriya Morabia — computer engineer, AI/ML builder, designer and social media storyteller.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <CurtainIntro />
+      <GrainOverlay />
+      <Nav />
+      <RoamingKriya />
+      <main>
+        <Hero />
+        <Story />
+        <Work />
+        <Lab />
+        <Loves />
+        <MemoryWall />
+        <PingMe />
+      </main>
+    </>
   );
 }
