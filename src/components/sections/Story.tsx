@@ -1,7 +1,7 @@
 import { Kicker, Pill, Reveal, SectionTitle } from "@/components/Bits";
 import { MiniKriya } from "@/components/MiniKriya";
 import { TiltCard } from "@/components/TiltCard";
-import { toolkit, traits } from "@/data/content";
+import { toolkitGroups, traits } from "@/data/content";
 
 export function Story() {
   return (
@@ -38,14 +38,23 @@ export function Story() {
         </div>
 
         <Reveal delay={0.1}>
-          <p className="mt-14 font-hand text-2xl text-wine">the toolkit —</p>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {toolkit.map((t) => (
-              <li key={t}>
-                <Pill>{t}</Pill>
-              </li>
+          <p className="mt-16 font-hand text-2xl text-wine">the toolkit —</p>
+          <div className="mt-6 grid gap-x-10 gap-y-8 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]">
+            {toolkitGroups.map((g) => (
+              <div key={g.label}>
+                <h3 className="border-b border-line pb-2 text-xs uppercase tracking-[0.18em] text-gold">
+                  {g.label}
+                </h3>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {g.items.map((t) => (
+                    <li key={t}>
+                      <Pill>{t}</Pill>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </Reveal>
       </div>
     </section>

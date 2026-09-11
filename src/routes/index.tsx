@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CurtainIntro, GrainOverlay } from "@/components/CurtainIntro";
 import { Nav } from "@/components/Nav";
 import { RoamingKriya } from "@/components/MiniKriya";
+import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Lab } from "@/components/sections/Lab";
 import { Loves } from "@/components/sections/Loves";
@@ -39,6 +40,7 @@ function Index() {
       <main>
         <Hero />
         <Story />
+        <Experience />
         <Work />
         <Lab />
         <Loves />

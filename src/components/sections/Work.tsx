@@ -3,16 +3,16 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 
 import { Kicker, Reveal, SectionTitle } from "@/components/Bits";
-import { alsoPartOf, projects } from "@/data/content";
+import { projects } from "@/data/content";
 
 export function Work() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="work" className="scroll-mt-20 bg-paper px-5 py-24">
+    <section id="work" className="scroll-mt-20 bg-paper-2 px-5 py-24">
       <div className="mx-auto max-w-5xl">
         <Reveal>
-          <Kicker>chapter two.</Kicker>
+          <Kicker>chapter three.</Kicker>
           <SectionTitle>Project archive.</SectionTitle>
         </Reveal>
 
@@ -95,20 +95,6 @@ export function Work() {
           })}
         </div>
 
-        <Reveal>
-          <p className="mt-16 font-hand text-2xl text-wine">also part of, along the way —</p>
-        </Reveal>
-        <div className="mt-6 grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))]">
-          {alsoPartOf.map((a, i) => (
-            <Reveal key={a.title} delay={i * 0.05}>
-              <article className="paper-card h-full rounded-lg p-5">
-                <h3 className="font-display text-xl leading-tight text-ink">{a.title}</h3>
-                <p className="mt-1 text-xs uppercase tracking-[0.12em] text-gold">{a.role}</p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{a.body}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
       </div>
     </section>
   );

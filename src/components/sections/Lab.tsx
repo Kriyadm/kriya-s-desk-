@@ -14,7 +14,7 @@ export function Lab() {
     <section id="lab" className="scroll-mt-20 bg-paper-3 px-5 py-24">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <Kicker>chapter three.</Kicker>
+          <Kicker>chapter four.</Kicker>
           <SectionTitle>The lab.</SectionTitle>
         </Reveal>
 

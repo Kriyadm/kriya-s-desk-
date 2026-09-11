@@ -63,7 +63,7 @@ export function MemoryWall() {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <Kicker>chapter five.</Kicker>
+              <Kicker>chapter six.</Kicker>
               <SectionTitle>The memory wall.</SectionTitle>
             </div>
             <button

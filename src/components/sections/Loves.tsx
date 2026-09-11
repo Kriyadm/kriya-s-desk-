@@ -4,19 +4,19 @@ import { useState } from "react";
 import { Kicker, Reveal, SectionTitle } from "@/components/Bits";
 import { MiniKriya } from "@/components/MiniKriya";
 import { TiltCard } from "@/components/TiltCard";
-import { books, designSwatches, movieTickets, receiptLines } from "@/data/content";
+import { books, designSwatches, movieTickets, receiptLines, techLoves } from "@/data/content";
 
-const tabs = ["Design", "Magazines", "Books", "Movies", "Food"] as const;
+const tabs = ["Tech", "Design", "Magazines", "Books", "Movies", "Food"] as const;
 type Tab = (typeof tabs)[number];
 
 export function Loves() {
-  const [tab, setTab] = useState<Tab>("Design");
+  const [tab, setTab] = useState<Tab>("Tech");
 
   return (
     <section id="loves" className="scroll-mt-20 bg-paper px-5 py-24">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <Kicker>chapter four.</Kicker>
+          <Kicker>chapter five.</Kicker>
           <SectionTitle>Things I love.</SectionTitle>
         </Reveal>
 
@@ -51,6 +51,7 @@ export function Loves() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35, ease: [0.2, 0.65, 0.3, 0.9] }}
             >
+              {tab === "Tech" && <TechTab />}
               {tab === "Design" && <DesignTab />}
               {tab === "Magazines" && <MagazineTab />}
               {tab === "Books" && <BooksTab />}
@@ -61,6 +62,26 @@ export function Loves() {
         </div>
       </div>
     </section>
+  );
+}
+
+function TechTab() {
+  return (
+    <div className="flex flex-wrap items-center gap-10 md:flex-nowrap">
+      <div className="grid min-w-0 flex-1 gap-5 [grid-template-columns:repeat(auto-fit,minmax(230px,1fr))]">
+        {techLoves.map((t, i) => (
+          <TiltCard key={t.title} baseRotate={i % 2 ? 1.4 : -1.4} className="h-full">
+            <article className="paper-card h-full rounded-lg p-5">
+              <h3 className="font-display text-xl leading-tight text-ink">{t.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{t.body}</p>
+            </article>
+          </TiltCard>
+        ))}
+      </div>
+      <div className="hidden lg:block">
+        <MiniKriya pose="working" width={200} />
+      </div>
+    </div>
   );
 }
 
