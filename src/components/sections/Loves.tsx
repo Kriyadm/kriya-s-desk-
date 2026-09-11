@@ -16,7 +16,7 @@ export function Loves() {
     <section id="loves" className="scroll-mt-20 bg-paper px-5 py-24">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <Kicker>chapter four.</Kicker>
+          <Kicker>chapter five.</Kicker>
           <SectionTitle>Things I love.</SectionTitle>
         </Reveal>
 
