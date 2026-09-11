@@ -166,6 +166,120 @@ export const alsoPartOf = [
   },
 ];
 
+export type ExperienceItem = {
+  role: string;
+  org: string;
+  period: string;
+  track: "Engineering" | "Design & Content";
+  points: string[];
+};
+
+export const experience: ExperienceItem[] = [
+  {
+    role: "Software Development Engineer — Intern",
+    org: "Elsamex (EMSL)",
+    period: "2026",
+    track: "Engineering",
+    points: [
+      "Built an IT asset management system replacing a manual Excel process for 894 highway-infrastructure assets.",
+      "Designed role-based access and ~100 REST endpoints across the full stack.",
+      "Raised data accuracy to ~99% and added structured tracking and reporting.",
+    ],
+  },
+  {
+    role: "Software Development Engineer — Intern",
+    org: "Amnex Infotechnologies",
+    period: "2025",
+    track: "Engineering",
+    points: [
+      "Integrated RESTful APIs across ~300 endpoints with a 15-person cross-functional team.",
+      "Worked across Angular and Spring Boot services in an enterprise codebase.",
+      "Contributed to a 27% improvement in system performance.",
+    ],
+  },
+  {
+    role: "Machine Learning Intern",
+    org: "Bharat Intern · Codesoft",
+    period: "2024 – 2025",
+    track: "Engineering",
+    points: [
+      "Delivered ML projects covering preprocessing, feature engineering and model evaluation.",
+      "Compared Logistic Regression, Random Forest and SVM on accuracy, precision-recall and ROC-AUC.",
+      "Consistently reached ~94% model accuracy.",
+    ],
+  },
+  {
+    role: "Graphics Head",
+    org: "Storytellers Club, Nirma University",
+    period: "2024 – 2025",
+    track: "Design & Content",
+    points: [
+      "Led visual direction for the club's campaigns and events.",
+      "Produced audience-focused graphics and storytelling content.",
+    ],
+  },
+  {
+    role: "Social Media & Graphics — Core Team",
+    org: "CSI Nirma",
+    period: "2024 – 2025",
+    track: "Design & Content",
+    points: [
+      "Managed social content and creatives for a technical student body.",
+      "Supported event promotion end-to-end, from concept to publishing.",
+    ],
+  },
+  {
+    role: "Campus Ambassador",
+    org: "Global Colliance · Internshala · Mood Indigo, IIT Bombay",
+    period: "2023 – 2025",
+    track: "Design & Content",
+    points: [
+      "Promoted events, campaigns and opportunities to a student audience.",
+      "Ran digital outreach and engagement across channels.",
+    ],
+  },
+  {
+    role: "Content Manager",
+    org: "Hostel Instagram Account",
+    period: "2023 – 2025",
+    track: "Design & Content",
+    points: [
+      "Created and curated posts, Stories and short-form video for a community audience.",
+      "Grew engagement through relatable, trend-aware content.",
+    ],
+  },
+  {
+    role: "Event & Brand Experience",
+    org: "Hungrito Food Fest 2025 + Hungrito High Street",
+    period: "2025",
+    track: "Design & Content",
+    points: [
+      "Supported on-ground event execution and audience engagement.",
+      "Handled brand interaction and content opportunities across food and lifestyle activations.",
+    ],
+  },
+];
+
+export const techLoves = [
+  {
+    title: "Clean API design",
+    body: "Predictable resources, honest status codes, and errors that tell you what to do next.",
+  },
+  {
+    title: "Computer vision",
+    body: "Detection plus tracking — the moment identities stay consistent across frames never stops being satisfying.",
+  },
+  {
+    title: "Interface engineering",
+    body: "Design systems, tokens and motion that make a product feel considered rather than decorated.",
+  },
+  {
+    title: "Making models explainable",
+    body: "Precision-recall over raw accuracy, and charts a non-technical reader can actually act on.",
+  },
+];
+
+
 export const labNotes = [
   {
     title: "Drone detection & tracking",
