@@ -34,7 +34,8 @@ function collageSpot(index: number, width: number) {
     [0.02, 42], [0.49, 116], [0.08, 254], [0.52, 344], [0.03, 470], [0.48, 518],
   ] as const;
   const slots = width < 560 ? mobileSlots : desktopSlots;
-  const slot = slots[index % slots.length];
+  const slot = slots[index % slots.length] ?? slots[0];
+  if (!slot) return { x: 8, y: 8 };
   const layer = Math.floor(index / slots.length);
   return {
     x: Math.max(8, Math.min(width - size - 8, width * slot[0] + layer * 12)),
