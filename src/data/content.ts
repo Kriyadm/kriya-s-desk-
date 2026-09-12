@@ -296,26 +296,28 @@ export const labNotes = [
 ];
 
 export const designSwatches = [
-  { title: "UI experiment", link: "[ADD FIGMA LINK]" },
-  { title: "Website concept", link: "[ADD LINK]" },
-  { title: "Interaction study", link: "[ADD LINK]" },
-  { title: "Visual exploration", link: "[ADD LINK]" },
+  { title: "UI experiment", link: "case study coming soon" },
+  { title: "Website concept", link: "case study coming soon" },
+  { title: "Interaction study", link: "case study coming soon" },
+  { title: "Visual exploration", link: "case study coming soon" },
 ];
 
 export const books = [
-  { title: "[BOOK ONE]", note: "a note about why this one stayed with me." },
-  { title: "[BOOK TWO]", note: "read in one sitting, no regrets." },
-  { title: "[BOOK THREE]", note: "the one I keep recommending." },
-  { title: "[BOOK FOUR]", note: "comfort reread, always." },
-  { title: "[BOOK FIVE]", note: "still thinking about that ending." },
+  { title: "Atomic Habits", note: "the one that actually changed how I plan my days." },
+  { title: "Verity", note: "read it in one sitting, still not okay." },
+  { title: "A Thousand Splendid Suns", note: "the one I keep recommending to everyone." },
+  { title: "Twisted series", note: "comfort reread, no notes." },
 ];
 
 export const movieTickets = [
-  { title: "[ROM-COM PICK]", note: "admit one · no arguments" },
-  { title: "[BOLLYWOOD PICK]", note: "admit one · full volume" },
-  { title: "[DIRECTOR / ACTOR]", note: "admit one · entire filmography" },
-  { title: "[COMFORT MOVIE]", note: "admit one · for the 40th time" },
+  { title: "Yeh Jawaani Hai Deewani", note: "admit one · no arguments" },
+  { title: "Zindagi Na Milegi Dobara", note: "admit one · full volume" },
+  { title: "To All the Boys I've Loved Before", note: "admit one · rom-com supremacy" },
+  { title: "Wake Up Sid", note: "admit one · for the growing-up scenes" },
+  { title: "Chal Jivi Laiye", note: "admit one · Gujarati, and it gets me every time" },
+  { title: "Love Ni Bhavai", note: "admit one · for the 40th time" },
 ];
+
 
 export const receiptLines = [
   "What I ordered vs what I got",

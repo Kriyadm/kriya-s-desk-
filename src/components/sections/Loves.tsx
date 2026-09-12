@@ -140,14 +140,18 @@ function MagazineTab() {
           >
             <p className="font-hand text-2xl text-wine">inside the spread —</p>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              Conceptualized and designed personalized digital magazines — creative themes,
-              layouts, captions, photo curation, and storytelling, made for the people I love.
+              Four issues so far: one for my college group, one for a classmate and colleague, one
+              for a friend&apos;s farewell, and one for a friend&apos;s birthday. Each one gets its
+              own theme, layout, captions and photo curation.
             </p>
-            <p className="mt-4 text-xs italic text-ink-soft">
-              [Add real spreads/photos from your birthday &amp; friendship magazines here — the
-              memory wall is a great place to drop scans or exports of these too.]
-            </p>
+            <ul className="mt-4 space-y-1 text-xs uppercase tracking-[0.16em] text-gold">
+              <li>no. 01 — the college group issue</li>
+              <li>no. 02 — for a classmate &amp; colleague</li>
+              <li>no. 03 — the farewell issue</li>
+              <li>no. 04 — the birthday issue</li>
+            </ul>
           </div>
+
         </motion.div>
       </button>
     </div>
