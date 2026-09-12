@@ -307,6 +307,33 @@ export const books = [
   { title: "Verity", note: "read it in one sitting, still not okay." },
   { title: "A Thousand Splendid Suns", note: "the one I keep recommending to everyone." },
   { title: "Twisted series", note: "comfort reread, no notes." },
+  { title: "Harry Potter series", note: "the world I will always happily return to." },
+  { title: "Set It Up", note: "office chaos, sharp banter, perfect comfort reading." },
+  { title: "The Hello series", note: "romance with exactly the kind of warmth I love." },
+  { title: "Windy City series", note: "found family, sport and a very good slow burn." },
+];
+
+export const magazines = [
+  {
+    title: "The College Group Issue",
+    detail: "A keepsake for my college group.",
+    url: "https://canva.link/4tt8zmz15fnfayb",
+  },
+  {
+    title: "The Classmate Issue",
+    detail: "Made for a classmate and colleague.",
+    url: "https://canva.link/oi0sy624mjflztc",
+  },
+  {
+    title: "The Farewell Issue",
+    detail: "A farewell story for a friend.",
+    url: "https://canva.link/754wb0tvgzafo3h",
+  },
+  {
+    title: "The Birthday Issue",
+    detail: "A birthday edition made personally.",
+    url: "https://canva.link/k8net1sumh4w19d",
+  },
 ];
 
 export const movieTickets = [
