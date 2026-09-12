@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { Kicker, Reveal, SectionTitle } from "@/components/Bits";
 
 const STORAGE_KEY = "kriya-memory-wall-photos";
-const CANVAS_H = 620;
-const CARD = 200;
+const CANVAS_H = 680;
+const LAYOUT_VERSION = 2;
 
 type Photo = {
   id: string;
@@ -15,17 +15,30 @@ type Photo = {
   caption: string;
   x: number;
   y: number;
+  layoutVersion?: number;
 };
 
-function randomSpot(index: number, width: number) {
-  const cols = Math.max(1, Math.floor((width - 40) / (CARD + 20)));
-  const col = index % cols;
-  const row = Math.floor(index / cols);
-  const jitterX = Math.random() * 40 - 20;
-  const jitterY = Math.random() * 40 - 20;
+function cardSize(width: number) {
+  if (width < 500) return 152;
+  if (width < 800) return 184;
+  return 208;
+}
+
+function collageSpot(index: number, width: number) {
+  const size = cardSize(width);
+  const desktopSlots = [
+    [0.04, 62], [0.35, 18], [0.68, 76], [0.16, 292], [0.48, 252], [0.74, 356],
+    [0.02, 454], [0.39, 448], [0.65, 510],
+  ] as const;
+  const mobileSlots = [
+    [0.02, 42], [0.49, 116], [0.08, 254], [0.52, 344], [0.03, 470], [0.48, 518],
+  ] as const;
+  const slots = width < 560 ? mobileSlots : desktopSlots;
+  const slot = slots[index % slots.length];
+  const layer = Math.floor(index / slots.length);
   return {
-    x: Math.max(8, Math.min(width - CARD - 8, 20 + col * (CARD + 24) + jitterX)),
-    y: Math.max(8, Math.min(CANVAS_H - CARD - 40, 24 + row * (CARD + 30) + jitterY)),
+    x: Math.max(8, Math.min(width - size - 8, width * slot[0] + layer * 12)),
+    y: Math.max(8, Math.min(CANVAS_H - size - 28, slot[1] + layer * 18)),
   };
 }
 
@@ -45,7 +58,9 @@ export function MemoryWall() {
         const width = canvasRef.current?.clientWidth ?? 900;
         setPhotos(
           saved.map((p, i) =>
-            typeof p.x === "number" && typeof p.y === "number" ? p : { ...p, ...randomSpot(i, width) },
+            p.layoutVersion === LAYOUT_VERSION
+              ? p
+              : { ...p, ...collageSpot(i, width), layoutVersion: LAYOUT_VERSION },
           ),
         );
       }
@@ -77,7 +92,8 @@ export function MemoryWall() {
             src: String(reader.result),
             rotation: Math.random() * 10 - 5,
             caption: file.name.replace(/\.[^.]+$/, ""),
-            ...randomSpot(prev.length + offset, width),
+            ...collageSpot(prev.length + offset, width),
+            layoutVersion: LAYOUT_VERSION,
           },
         ]);
       };
@@ -94,14 +110,41 @@ export function MemoryWall() {
     setPhotos((prev) => prev.map((p) => (p.id === id ? { ...p, caption } : p)));
   }
 
-  function moveTo(id: string, x: number, y: number) {
-    setPhotos((prev) => prev.map((p) => (p.id === id ? { ...p, x, y } : p)));
+  function moveOrSwap(id: string, x: number, y: number) {
+    const width = canvasRef.current?.clientWidth ?? 900;
+    const size = cardSize(width);
+    const boundedX = Math.max(0, Math.min(width - size, x));
+    const boundedY = Math.max(0, Math.min(CANVAS_H - size, y));
+    setPhotos((prev) => {
+      const moved = prev.find((photo) => photo.id === id);
+      if (!moved) return prev;
+      const target = prev.find(
+        (photo) =>
+          photo.id !== id &&
+          Math.hypot(photo.x - boundedX, photo.y - boundedY) < size * 0.62,
+      );
+      if (!target) {
+        return prev.map((photo) =>
+          photo.id === id ? { ...photo, x: boundedX, y: boundedY } : photo,
+        );
+      }
+      return prev.map((photo) => {
+        if (photo.id === id) return { ...photo, x: target.x, y: target.y };
+        if (photo.id === target.id) return { ...photo, x: moved.x, y: moved.y };
+        return photo;
+      });
+    });
   }
 
   function shuffle() {
     const width = canvasRef.current?.clientWidth ?? 900;
     setPhotos((prev) =>
-      prev.map((p, i) => ({ ...p, ...randomSpot(i, width), rotation: Math.random() * 10 - 5 })),
+      prev.map((p, i) => ({
+        ...p,
+        ...collageSpot(i, width),
+        rotation: Math.random() * 8 - 4,
+        layoutVersion: LAYOUT_VERSION,
+      })),
     );
   }
 
@@ -133,8 +176,8 @@ export function MemoryWall() {
             </div>
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-soft">
-            Drag the photos anywhere on the board, tap the pencil to rename one, and click a photo to
-            see it big. Everything you pin stays in this browser after a refresh.
+            Drag a photo onto another to swap their places, or leave it anywhere you like. Rename,
+            open and rearrange every memory — the collage stays saved in this browser.
           </p>
         </Reveal>
 
@@ -153,9 +196,13 @@ export function MemoryWall() {
 
         <div
           ref={canvasRef}
-          className="relative mt-10 overflow-hidden rounded-lg border-2 border-dashed border-line bg-paper/50"
+          className="memory-collage relative mt-10 overflow-hidden rounded-md border border-line"
           style={{ height: CANVAS_H }}
         >
+          <div aria-hidden="true" className="absolute left-[5%] top-7 h-16 w-24 -rotate-6 border border-line bg-paper-3/70" />
+          <div aria-hidden="true" className="absolute right-[7%] top-8 font-hand text-5xl text-wine/50">↙</div>
+          <div aria-hidden="true" className="absolute bottom-9 left-[7%] text-5xl text-gold/60">✿</div>
+          <div aria-hidden="true" className="absolute bottom-8 right-[5%] h-12 w-28 rotate-3 border-y border-dashed border-line bg-paper/40" />
           {photos.length === 0 ? (
             <button
               onClick={() => inputRef.current?.click()}
@@ -172,16 +219,16 @@ export function MemoryWall() {
                   dragConstraints={canvasRef}
                   dragElastic={0.08}
                   dragMomentum={false}
-                  onDragEnd={(_, info) => moveTo(p.id, p.x + info.offset.x, p.y + info.offset.y)}
+                  onDragEnd={(_, info) => moveOrSwap(p.id, p.x + info.offset.x, p.y + info.offset.y)}
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1, rotate: p.rotation, x: p.x, y: p.y }}
                   exit={{ opacity: 0, scale: 0.85 }}
                   whileHover={{ rotate: 0, scale: 1.04, zIndex: 20 }}
                   whileDrag={{ rotate: 0, scale: 1.06, zIndex: 30 }}
                   transition={{ type: "spring", stiffness: 220, damping: 24 }}
-                  className="group absolute left-0 top-0 cursor-grab active:cursor-grabbing"
+                  className="group absolute left-0 top-0 cursor-grab touch-none active:cursor-grabbing"
                 >
-                  <div className="bg-white p-3 pb-9 shadow-[0_18px_34px_-20px_rgba(43,33,24,0.85)]">
+                  <div className="bg-paper p-2 pb-8 shadow-lg sm:p-3 sm:pb-9">
                     <button
                       onClick={() => setLightbox(p)}
                       className="block"
@@ -191,7 +238,7 @@ export function MemoryWall() {
                         src={p.src}
                         alt={p.caption || "A pinned memory"}
                         draggable={false}
-                        className="h-40 w-40 select-none object-cover"
+                        className="h-28 w-28 select-none object-cover sm:h-36 sm:w-36 md:h-40 md:w-40"
                       />
                     </button>
                     {editing === p.id ? (
@@ -207,10 +254,10 @@ export function MemoryWall() {
                           if (e.key === "Enter") e.currentTarget.blur();
                           if (e.key === "Escape") setEditing(null);
                         }}
-                        className="mt-1 w-40 rounded-sm border border-line bg-paper px-1 font-hand text-lg text-ink"
+                        className="mt-1 w-28 rounded-sm border border-line bg-paper px-1 font-hand text-base text-ink sm:w-36 md:w-40 md:text-lg"
                       />
                     ) : (
-                      <p className="mt-1 flex w-40 items-center gap-1 font-hand text-lg text-ink">
+                      <p className="mt-1 flex w-28 items-center gap-1 font-hand text-base text-ink sm:w-36 md:w-40 md:text-lg">
                         <span className="truncate">{p.caption || "untitled"}</span>
                         <button
                           onClick={() => setEditing(p.id)}
