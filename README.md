@@ -1,9 +1,4 @@
 # Kriya's Notebook Desk
-
-# LOVABLE PROMPT — "The Notebook Desk" — Kriya Morabia Portfolio (Full, Current Version)
-
-This is the complete, up-to-date prompt. It supersedes any earlier portfolio prompts — paste this one in on its own; you don't need the older files.
-
 ---
 
 ## 0. WHAT THIS IS
