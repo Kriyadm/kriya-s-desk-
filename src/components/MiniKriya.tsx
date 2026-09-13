@@ -9,20 +9,17 @@ import {
 } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import workingAsset from "@/assets/kriya-working.png.asset.json";
-import talkingAsset from "@/assets/kriya-talking.png.asset.json";
-import readingAsset from "@/assets/kriya-reading.png.asset.json";
-import eatingAsset from "@/assets/kriya-eating.png.asset.json";
-import roamingAsset from "@/assets/kriya-roaming.png.asset.json";
-import farewellAsset from "@/assets/kriya-farewell.png.asset.json";
+// Illustrations live in public/assets/kriya/ so they work on any deployment
+// (Vercel included), not only on Lovable's asset CDN.
+const KRIYA = "/assets/kriya";
 
 const poses = {
-  working: { src: workingAsset.url, alt: "Illustration of Kriya, in her round glasses, sitting with a laptop and typing" },
-  talking: { src: talkingAsset.url, alt: "Illustration of Kriya, in her round glasses, laptop tucked away, talking with one hand raised" },
-  reading: { src: readingAsset.url, alt: "Illustration of Kriya, in her round glasses, reading a book on a stack of books" },
-  eating: { src: eatingAsset.url, alt: "Illustration of Kriya, in her round glasses, sitting cross-legged eating from a plate" },
-  roaming: { src: roamingAsset.url, alt: "Illustration of Kriya, in her round glasses, mid-step, wandering" },
-  farewell: { src: farewellAsset.url, alt: "Illustration of Kriya, in her round glasses, waving goodbye" },
+  working: { src: `${KRIYA}/kriya-working.png`, alt: "Illustration of Kriya, in her round glasses, sitting with a laptop and typing" },
+  talking: { src: `${KRIYA}/kriya-talking.png`, alt: "Illustration of Kriya, in her round glasses, laptop tucked away, talking with one hand raised" },
+  reading: { src: `${KRIYA}/kriya-reading.png`, alt: "Illustration of Kriya, in her round glasses, reading a book on a stack of books" },
+  eating: { src: `${KRIYA}/kriya-eating.png`, alt: "Illustration of Kriya, in her round glasses, sitting cross-legged eating from a plate" },
+  roaming: { src: `${KRIYA}/kriya-roaming.png`, alt: "Illustration of Kriya, in her round glasses, mid-step, wandering" },
+  farewell: { src: `${KRIYA}/kriya-farewell.png`, alt: "Illustration of Kriya, in her round glasses, waving goodbye" },
 } as const;
 
 export type PoseName = keyof typeof poses;
